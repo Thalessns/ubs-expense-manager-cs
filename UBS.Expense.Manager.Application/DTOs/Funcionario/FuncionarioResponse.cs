@@ -7,5 +7,5 @@ public class FuncionarioResponse
     public string Email { get; set; }
     public string Cargo { get; set; }
     public Guid DepartamentoId { get; set; }
-    public Guid GestorId { get; set; }
+    public Guid? GestorId { get; set; }
 }

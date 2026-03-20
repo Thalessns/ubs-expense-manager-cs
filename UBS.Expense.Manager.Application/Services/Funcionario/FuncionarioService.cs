@@ -1,10 +1,10 @@
-namespace UBS.Expense.Manager.Application.Services;
+namespace UBS.Expense.Manager.Application.Services.Funcionario;
 
 using UBS.Expense.Manager.Application.DTOs.Funcionario;
 using UBS.Expense.Manager.Domain.Entities;
 using UBS.Expense.Manager.Infra.Repositories.Funcionario;
 
-public class FuncionarioService
+public class FuncionarioService : IFuncionarioService
 {
     private readonly IFuncionarioRepository _repository;
 
