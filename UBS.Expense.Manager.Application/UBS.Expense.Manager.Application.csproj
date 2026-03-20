@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\UBS.Expense.Manager.Domain\UBS.Expense.Manager.Domain.csproj" />
+    <ProjectReference Include="..\UBS.Expense.Manager.Infra\UBS.Expense.Manager.Infra.csproj" />
+  </ItemGroup>
+
 </Project>

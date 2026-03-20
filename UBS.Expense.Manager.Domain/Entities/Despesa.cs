@@ -4,7 +4,6 @@ namespace UBS.Expense.Manager.Domain.Entities;
 
 public class Despesa
 {
-    
     public Guid Id { get; private set; }
     public Guid FuncionarioId { get; private set; }
     public CategoriaDespesa Categoria { get; private set; }
@@ -17,7 +16,7 @@ public class Despesa
     public Despesa(){ }
 
     public Despesa(
-        Guid funcionarioId, CategoriaDespesa categoria, decimal valor, Moeda moeda, string descricao, DateTime data)
+        Guid funcionarioId, CategoriaDespesa categoria, decimal valor, Moeda moeda, string descricao)
     {
         Id = Guid.NewGuid();
         FuncionarioId = funcionarioId;
@@ -25,8 +24,12 @@ public class Despesa
         Valor = valor;
         Moeda = moeda;
         Descricao = descricao;
-        Data = data;
+        Data = DateTime.UtcNow;
         Status = StatusDespesa.Pendente;
     }
-    
+
+    public void UpdateStatus(StatusDespesa newStatus)
+    {
+        Status = newStatus;
+    }
 }
