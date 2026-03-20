@@ -1,3 +1,5 @@
+using UBS.Expense.Manager.Infra.Exceptions;
+
 namespace UBS.Expense.Manager.Infra.Repositories.Departamento;
 
 using Microsoft.EntityFrameworkCore;
@@ -12,9 +14,15 @@ public class DepartamentoRepository(DatabaseContext context) : IDepartamentoRepo
         await context.SaveChangesAsync();
     }
 
-    public async Task<Departamento?> GetDepartamentoById(Guid id)
+    public async Task<Departamento> GetDepartamentoById(Guid id)
     {
-        return await context.Departamentos.FindAsync(id);
+        Departamento? departamento = await context.Departamentos.FindAsync(id);
+        if (departamento == null)
+        {
+            throw new NotFoundException($"Departamento with id {id} was not found.");
+        }
+
+        return departamento;
     }
 
     public async Task<List<Departamento>> GetAllDepartamentos()

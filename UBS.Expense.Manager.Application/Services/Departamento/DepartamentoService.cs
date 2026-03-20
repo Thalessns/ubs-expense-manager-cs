@@ -22,11 +22,7 @@ public class DepartamentoService : IDepartamentoService
 
     public async Task<DepartamentoResponse> GetDepartamentoById(Guid id)
     {
-        Departamento? departamento = await _repository.GetDepartamentoById(id);
-        if (departamento == null)
-        {
-            throw new Exception($"Departamento with id '{id}' was  not found.");
-        }
+        Departamento departamento = await _repository.GetDepartamentoById(id);
         return ToDepartamentoResponse(departamento);
     }
 
@@ -38,11 +34,7 @@ public class DepartamentoService : IDepartamentoService
 
     public async Task<bool> DeleteDepartamento(Guid id)
     {
-        var departamento = await _repository.GetDepartamentoById(id);
-        if (departamento == null)
-        {
-            throw new Exception($"Departamento with id '{id}' not found.");
-        }
+        Departamento departamento = await _repository.GetDepartamentoById(id);
         return await _repository.DeleteDepartamento(departamento);
     }
 

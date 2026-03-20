@@ -13,10 +13,9 @@ public class FuncionarioConfig : IEntityTypeConfiguration<Funcionario>
         builder.Property(f => f.Nome)
             .IsRequired()
             .HasMaxLength(50);
-        
-        builder.Property(f => f.Email)
-            .IsRequired()
-            .HasMaxLength(50);
+
+        builder.HasIndex(f => f.Email)
+            .IsUnique();
         
         builder.Property(f => f.Cargo)
             .IsRequired()

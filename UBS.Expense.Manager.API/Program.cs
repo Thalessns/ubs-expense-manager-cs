@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using DotNetEnv;
+using UBS.Expense.Manager.API;
 using UBS.Expense.Manager.Application.Services.Departamento;
 using UBS.Expense.Manager.Application.Services.Despesa;
 using UBS.Expense.Manager.Application.Services.Funcionario;
@@ -45,8 +46,12 @@ builder.Services.AddControllers().AddJsonOptions(options =>
     options.JsonSerializerOptions.Converters.Add(new System.Text.Json.Serialization.JsonStringEnumConverter());
 });
 
+builder.Services.AddExceptionHandler<ExceptionHandler>();
+builder.Services.AddProblemDetails();
+
 var app = builder.Build();
 
+app.UseExceptionHandler();
 app.MapControllers();
 
 if (app.Environment.IsDevelopment())
