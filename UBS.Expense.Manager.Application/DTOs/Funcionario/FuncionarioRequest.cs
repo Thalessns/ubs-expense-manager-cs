@@ -21,6 +21,5 @@ public class FuncionarioRequest
     [Required(ErrorMessage = "Funcionario's 'DepartamentoId' is required.")]
     public Guid DepartamentoId { get; set; }
     
-    [Required(ErrorMessage = "Funcionario's 'GestorId' is required.")]
-    public Guid GestorId { get; set; }
+    public Guid? GestorId { get; set; }
 }

@@ -27,10 +27,11 @@ public class FuncionarioConfig : IEntityTypeConfiguration<Funcionario>
             .HasForeignKey(f => f.DepartamentoId)
             .IsRequired()
             .OnDelete(DeleteBehavior.Restrict);
-        
+
         builder.HasOne<Funcionario>()
             .WithMany()
             .HasForeignKey(f => f.GestorId)
+            .IsRequired(false)
             .OnDelete(DeleteBehavior.Restrict);
     }
 }
