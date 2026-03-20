@@ -1,10 +1,11 @@
-namespace UBS.Expense.Manager.Application.Services;
+namespace UBS.Expense.Manager.Application.Services.Despesa;
 
 using UBS.Expense.Manager.Application.DTOs.Despesa;
 using UBS.Expense.Manager.Domain.Entities;
 using UBS.Expense.Manager.Domain.Enums;
 using UBS.Expense.Manager.Infra.Repositories.Despesa;
-public class DespesaService
+
+public class DespesaService : IDespesaService
 {
     private readonly IDespesaRepository _repository;
 

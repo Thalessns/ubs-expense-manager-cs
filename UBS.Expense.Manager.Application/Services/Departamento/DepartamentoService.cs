@@ -1,10 +1,10 @@
-namespace UBS.Expense.Manager.Application.Services;
+namespace UBS.Expense.Manager.Application.Services.Departamento;
 
 using UBS.Expense.Manager.Application.DTOs.Departamento;
 using UBS.Expense.Manager.Domain.Entities;
 using UBS.Expense.Manager.Infra.Repositories.Departamento;
 
-public class DepartamentoService
+public class DepartamentoService : IDepartamentoService
 {
     private readonly IDepartamentoRepository _repository;
 
