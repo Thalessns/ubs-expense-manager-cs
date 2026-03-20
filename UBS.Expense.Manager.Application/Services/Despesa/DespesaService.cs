@@ -23,11 +23,7 @@ public class DespesaService : IDespesaService
 
     public async Task<DespesaResponse> GetDespesaById(Guid id)
     {
-        Despesa? despesa = await _repository.GetDespesaById(id);
-        if (despesa == null)
-        {
-            throw new Exception($"Despesa com id '{id}' não foi encontrada.");
-        }
+        Despesa despesa = await _repository.GetDespesaById(id);
         return ToDespesaResponse(despesa);
     }
 
@@ -53,11 +49,7 @@ public class DespesaService : IDespesaService
 
     public async Task<DespesaResponse> UpdateDespesa(Guid id, StatusDespesa newStatus)
     {
-        Despesa? despesa = await _repository.GetDespesaById(id);
-        if (despesa == null)
-        {
-            throw new Exception($"Despesa com id '{id}' não foi encontrada.");
-        }
+        Despesa despesa = await _repository.GetDespesaById(id);
         despesa.UpdateStatus(newStatus);
         await _repository.UpdateDespesa(despesa);
         return ToDespesaResponse(despesa);
@@ -65,11 +57,7 @@ public class DespesaService : IDespesaService
 
     public async Task<Boolean> DeleteDespesa(Guid id)
     {
-        Despesa? despesa = await _repository.GetDespesaById(id);
-        if (despesa == null)
-        {
-            throw new Exception($"Despesa com id '{id}' não foi encontrada.");
-        }
+        Despesa despesa = await _repository.GetDespesaById(id);
         return await _repository.DeleteDespesa(despesa);
     }
 

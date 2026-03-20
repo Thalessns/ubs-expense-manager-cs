@@ -1,3 +1,5 @@
+using UBS.Expense.Manager.Infra.Exceptions;
+
 namespace UBS.Expense.Manager.Infra.Repositories.Despesa;
 
 using Microsoft.EntityFrameworkCore;
@@ -15,7 +17,12 @@ public class DespesaRepository(DatabaseContext context) : IDespesaRepository
 
     public async Task<Despesa> GetDespesaById(Guid id)
     {
-        return await context.Despesas.FindAsync(id);
+        Despesa? despesa = await context.Despesas.FindAsync(id);
+        if (despesa == null)
+        {
+            throw new NotFoundException($"Despesa with id {id} was not found.");
+        }
+        return despesa;
     }
 
     public async Task<List<Despesa>> GetFilteredDespesas(

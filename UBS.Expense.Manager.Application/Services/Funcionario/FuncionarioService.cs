@@ -22,11 +22,7 @@ public class FuncionarioService : IFuncionarioService
 
     public async Task<FuncionarioResponse> GetFuncionarioById(Guid id)
     {
-        Funcionario? funcionario = await _repository.GetFuncionarioById(id);
-        if (funcionario == null)
-        {
-            throw new Exception($"Funcionario with id '{id}' not found.");
-        }
+        Funcionario funcionario = await _repository.GetFuncionarioById(id);
         return ToFuncionarioResponse(funcionario);
     }
 
@@ -39,10 +35,6 @@ public class FuncionarioService : IFuncionarioService
     public async Task<bool> DeleteFuncionario(Guid id)
     {
         Funcionario funcionario = await _repository.GetFuncionarioById(id);
-        if (funcionario == null)
-        {
-            throw new Exception($"Funcionario with id '{id}' not found.");
-        }
         return await _repository.DeleteFuncionario(funcionario);
     }
 

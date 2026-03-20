@@ -1,3 +1,6 @@
+using Npgsql;
+using UBS.Expense.Manager.Infra.Exceptions;
+
 namespace UBS.Expense.Manager.Infra.Repositories.Funcionario;
 
 using Microsoft.EntityFrameworkCore;
@@ -8,13 +11,30 @@ public class FuncionarioRepository(DatabaseContext context) : IFuncionarioReposi
 {
     public async Task CreateFuncionario(Funcionario funcionario)
     {
-        await context.Funcionarios.AddAsync(funcionario);
-        await context.SaveChangesAsync();
+        try
+        {
+            await context.Funcionarios.AddAsync(funcionario);
+            await context.SaveChangesAsync();
+        }
+        catch (DbUpdateException ex)
+        {
+            if (ex.InnerException is PostgresException pgEx && pgEx.SqlState == "23505")
+            {
+                throw new BadRequestException($"Email '{funcionario.Email}' already exists.");
+            }
+            throw new Exception(ex.Message);
+        }
+        
     }
 
     public async Task<Funcionario> GetFuncionarioById(Guid id)
     {
-        return await context.Funcionarios.FindAsync(id);
+        Funcionario? funcionario = await context.Funcionarios.FindAsync(id);
+        if (funcionario == null)
+        {
+            throw new NotFoundException($"Funcionario with  id {id} was not found.");
+        }
+        return funcionario;
     }
 
     public async Task<List<Funcionario>> GetAllFuncionarios()
