@@ -1,0 +1,17 @@
+services:
+
+  postgres-expense-manager:
+    image: postgres:latest
+    container_name: postgres-expense-manager
+    ports:
+      - "5450:5450"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: expense_manager
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+volumes:
+  postgres-data:
+  
