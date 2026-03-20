@@ -6,7 +6,7 @@ using UBS.Expense.Manager.Domain.Enums;
 public interface IDespesaRepository
 {
     public Task CreateDespesa(Despesa despesa);
-    public Task<Despesa> GetDespesaById(Guid id);
+    public Task<Despesa?> GetDespesaById(Guid id);
     public Task<List<Despesa>> GetFilteredDespesas(
         Guid? funcionarioId,
         CategoriaDespesa? categoria,
