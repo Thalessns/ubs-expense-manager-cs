@@ -1,10 +1,10 @@
 services:
 
   postgres-expense-manager:
-    image: postgres:latest
+    image: postgres:16
     container_name: postgres-expense-manager
     ports:
-      - "5450:5450"
+      - "5450:5432"
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
